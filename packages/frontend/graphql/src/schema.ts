@@ -81,10 +81,28 @@ export enum ServerDeploymentType {
   Selfhosted = 'Selfhosted',
 }
 
+export type PasswordLimitsType = {
+  minLength: number;
+  maxLength: number;
+};
+
+export type AuthPolicyType = {
+  password: PasswordLimitsType;
+};
+
 export enum ServerFeature {
   OAuth = 'OAuth',
   Payment = 'Payment',
 }
+
+export type ServerConfigType = {
+  version: string;
+  baseUrl: string;
+  name: string;
+  features: Array<ServerFeature>;
+  type: ServerDeploymentType;
+  authPolicy: AuthPolicyType;
+};
 
 export enum SubscriptionPlan {
   Enterprise = 'Enterprise',
@@ -693,14 +711,7 @@ export type ServerConfigQueryVariables = Exact<{ [key: string]: never }>;
 
 export type ServerConfigQuery = {
   __typename?: 'Query';
-  serverConfig: {
-    __typename?: 'ServerConfigType';
-    version: string;
-    baseUrl: string;
-    name: string;
-    features: Array<ServerFeature>;
-    type: ServerDeploymentType;
-  };
+  serverConfig: ServerConfigType;
 };
 
 export type SetWorkspacePublicByIdMutationVariables = Exact<{

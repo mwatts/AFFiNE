@@ -2,6 +2,10 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
+type AuthPolicyType {
+  password: PasswordLimitsType!
+}
+
 input CreateCheckoutSessionInput {
   coupon: String
   idempotencyKey: String!
@@ -164,6 +168,11 @@ enum OAuthProviderType {
   Google
 }
 
+type PasswordLimitsType {
+  maxLength: Int!
+  minLength: Int!
+}
+
 """User permission in workspace"""
 enum Permission {
   Admin
@@ -233,6 +242,9 @@ The `SafeInt` scalar type represents non-fractional signed whole numeric values 
 scalar SafeInt @specifiedBy(url: "https://www.ecma-international.org/ecma-262/#sec-number.issafeinteger")
 
 type ServerConfigType {
+  """auth policy"""
+  authPolicy: AuthPolicyType!
+
   """server base url"""
   baseUrl: String!
 

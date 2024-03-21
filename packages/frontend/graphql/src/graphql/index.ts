@@ -708,6 +708,12 @@ query serverConfig {
     name
     features
     type
+    authPolicy {
+      password {
+        minLength
+        maxLength
+      }
+    }
   }
 }`,
 };
