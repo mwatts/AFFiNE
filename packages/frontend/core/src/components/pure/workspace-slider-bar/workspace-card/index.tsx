@@ -1,5 +1,5 @@
 import { pushNotificationAtom } from '@affine/component/notification-center';
-import { Avatar } from '@affine/component/ui/avatar';
+import { Avatar, type AvatarProps } from '@affine/component/ui/avatar';
 import { Loading } from '@affine/component/ui/loading';
 import { Tooltip } from '@affine/component/ui/tooltip';
 import { openSettingModalAtom } from '@affine/core/atoms';
@@ -218,6 +218,9 @@ const WorkspaceStatus = () => {
   );
 };
 
+const avatarImageProps = {
+  style: { borderRadius: 3 },
+} satisfies AvatarProps['imageProps'];
 export const WorkspaceCard = forwardRef<
   HTMLDivElement,
   HTMLAttributes<HTMLDivElement>
@@ -243,8 +246,10 @@ export const WorkspaceCard = forwardRef<
       {...props}
     >
       <Avatar
+        imageProps={avatarImageProps}
+        fallbackProps={avatarImageProps}
         data-testid="workspace-avatar"
-        size={40}
+        size={32}
         url={avatarUrl}
         name={name}
         colorfulFallback
