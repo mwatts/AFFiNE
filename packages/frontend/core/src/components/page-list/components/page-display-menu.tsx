@@ -90,6 +90,7 @@ export const PageDisplayMenu = () => {
         data-active={group === option.value}
         endFix={group === option.value ? <DoneIcon fontSize={'20px'} /> : null}
         className={styles.subMenuItem}
+        data-testid={`group-by-${option.value}`}
       >
         <span>{option.label}</span>
       </MenuItem>
@@ -109,7 +110,10 @@ export const PageDisplayMenu = () => {
           triggerOptions={{ className: styles.subMenuTrigger }}
           items={subItems}
         >
-          <div className={styles.subMenuTriggerContent}>
+          <div
+            className={styles.subMenuTriggerContent}
+            data-testid="page-display-grouping-menuItem"
+          >
             <span>{t['com.affine.page.display.grouping']()}</span>
             <span className={styles.currentGroupType}>{currentGroupType}</span>
           </div>
@@ -128,6 +132,7 @@ export const PageDisplayMenu = () => {
               className={styles.propertyButton}
               onClick={option.onClick}
               data-active={properties[option.key]}
+              data-testid={`property-${option.key}`}
             >
               {option.label}
             </Button>
@@ -149,6 +154,7 @@ export const PageDisplayMenu = () => {
         iconPosition="end"
         icon={<ArrowDownSmallIcon className={styles.arrowDownSmallIcon} />}
         className={styles.headerDisplayButton}
+        data-testid="page-display-menu-button"
       >
         {t['com.affine.page.display']()}
       </Button>

@@ -22,14 +22,21 @@ const GroupLabel = ({
   label,
   count,
   icon,
+  id,
 }: {
-  label: string | ReactNode;
+  id: string;
+  label: string;
   count: number;
   icon?: ReactNode;
 }) => (
   <div className={styles.groupLabelWrapper}>
     {icon}
-    <div className={styles.groupLabel}>{label}</div>
+    <div
+      className={styles.groupLabel}
+      data-testid={`group-label-${id}-${count}`}
+    >
+      {label}
+    </div>
     <div className={styles.pageCount}>{` · ${count}`}</div>
   </div>
 );
@@ -44,7 +51,11 @@ export const useDateGroupDefinitions = <T extends ListItem>(
       {
         id: 'today',
         label: count => (
-          <GroupLabel label={t['com.affine.today']()} count={count} />
+          <GroupLabel
+            id="today"
+            label={t['com.affine.today']()}
+            count={count}
+          />
         ),
         match: item =>
           withinDaysAgo(new Date(item[key] ?? item.createDate ?? ''), 1),
@@ -52,7 +63,11 @@ export const useDateGroupDefinitions = <T extends ListItem>(
       {
         id: 'yesterday',
         label: count => (
-          <GroupLabel label={t['com.affine.yesterday']()} count={count} />
+          <GroupLabel
+            id="yesterday"
+            label={t['com.affine.yesterday']()}
+            count={count}
+          />
         ),
         match: item =>
           betweenDaysAgo(new Date(item[key] ?? item.createDate ?? ''), 1, 2),
@@ -60,7 +75,11 @@ export const useDateGroupDefinitions = <T extends ListItem>(
       {
         id: 'last7Days',
         label: count => (
-          <GroupLabel label={t['com.affine.last7Days']()} count={count} />
+          <GroupLabel
+            id="last7Days"
+            label={t['com.affine.last7Days']()}
+            count={count}
+          />
         ),
         match: item =>
           betweenDaysAgo(new Date(item[key] ?? item.createDate ?? ''), 2, 7),
@@ -68,7 +87,11 @@ export const useDateGroupDefinitions = <T extends ListItem>(
       {
         id: 'last30Days',
         label: count => (
-          <GroupLabel label={t['com.affine.last30Days']()} count={count} />
+          <GroupLabel
+            id="last30Days"
+            label={t['com.affine.last30Days']()}
+            count={count}
+          />
         ),
         match: item =>
           betweenDaysAgo(new Date(item[key] ?? item.createDate ?? ''), 7, 30),
@@ -76,7 +99,11 @@ export const useDateGroupDefinitions = <T extends ListItem>(
       {
         id: 'moreThan30Days',
         label: count => (
-          <GroupLabel label={t['com.affine.moreThan30Days']()} count={count} />
+          <GroupLabel
+            id="moreThan30Days"
+            label={t['com.affine.moreThan30Days']()}
+            count={count}
+          />
         ),
         match: item =>
           !withinDaysAgo(new Date(item[key] ?? item.createDate ?? ''), 30),
@@ -93,6 +120,7 @@ export const useTagGroupDefinitions = (): ItemGroupDefinition<ListItem>[] => {
       id: tag.id,
       label: count => (
         <GroupLabel
+          id={tag.title}
           label={tag.title}
           count={count}
           icon={
@@ -120,6 +148,7 @@ export const useFavoriteGroupDefinitions = <
         id: 'favourited',
         label: count => (
           <GroupLabel
+            id="favourited"
             label={t['com.affine.page.group-header.favourited']()}
             count={count}
             icon={<FavoritedIcon className={styles.favouritedIcon} />}
@@ -131,6 +160,7 @@ export const useFavoriteGroupDefinitions = <
         id: 'notFavourited',
         label: count => (
           <GroupLabel
+            id="notFavourited"
             label={t['com.affine.page.group-header.not-favourited']()}
             count={count}
             icon={<FavoriteIcon className={styles.notFavouritedIcon} />}
