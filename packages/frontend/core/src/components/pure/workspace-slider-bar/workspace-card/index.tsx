@@ -224,7 +224,7 @@ const WorkspaceInfo = ({ name }: { name: string }) => {
   return (
     <div className={styles.workspaceInfoSlider} data-active={delayActive}>
       <div className={styles.workspaceInfoSlide}>
-        <div className={styles.workspaceInfo}>
+        <div className={styles.workspaceInfo} data-type="normal">
           <div className={styles.workspaceName} data-testid="workspace-name">
             {name}
           </div>
@@ -234,7 +234,7 @@ const WorkspaceInfo = ({ name }: { name: string }) => {
         </div>
 
         {/* when syncing/offline/... */}
-        <div className={styles.workspaceInfo}>
+        <div className={styles.workspaceInfo} data-type="events">
           <div className={styles.workspaceActiveStatus}>
             <Tooltip content={message}>{icon}</Tooltip>
           </div>

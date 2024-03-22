@@ -27,7 +27,7 @@ export const workspaceInfoSlide = style({
   flexDirection: 'column',
   alignItems: 'flex-start',
   transform: 'translateY(0)',
-  transition: 'transform 0.2s',
+  transition: 'transform 0.5s cubic-bezier(.45,.21,0,1)',
   selectors: {
     [`.${workspaceInfoSlider}[data-active="true"] &`]: {
       transform: 'translateY(-42px)',
@@ -41,6 +41,16 @@ export const workspaceInfo = style({
   display: 'flex',
   flexDirection: 'column',
   justifyContent: 'center',
+  transition: 'opacity 0.5s',
+
+  selectors: {
+    [`.${workspaceInfoSlider}[data-active="true"] &[data-type="normal"]`]: {
+      opacity: 0,
+    },
+    [`.${workspaceInfoSlider}[data-active="false"] &[data-type="events"]`]: {
+      opacity: 0,
+    },
+  },
 });
 
 export const workspaceName = style({
