@@ -18,6 +18,7 @@ import {
   FavoritedIcon,
   FavoriteIcon,
   FilterIcon,
+  FilterMinusIcon,
   MoreVerticalIcon,
   OpenInNewIcon,
   ResetIcon,
@@ -43,26 +44,31 @@ export interface PageOperationCellProps {
   favorite: boolean;
   isPublic: boolean;
   link: string;
+  isInAllowList?: boolean;
   onToggleFavoritePage: () => void;
   onRemoveToTrash: () => void;
   onDuplicate: () => void;
   onDisablePublicSharing: () => void;
   onOpenInSplitView: () => void;
+  onRemoveFromAllowList?: () => void;
 }
 
 export const PageOperationCell = ({
   favorite,
   isPublic,
+  isInAllowList,
   link,
   onToggleFavoritePage,
   onRemoveToTrash,
   onDuplicate,
   onDisablePublicSharing,
   onOpenInSplitView,
+  onRemoveFromAllowList,
 }: PageOperationCellProps) => {
   const t = useAFFiNEI18N();
   const { appSettings } = useAppSettingHelper();
   const [openDisableShared, setOpenDisableShared] = useState(false);
+
   const OperationMenu = (
     <>
       {isPublic && (
@@ -72,6 +78,18 @@ export const PageOperationCell = ({
             setOpenDisableShared(true);
           }}
         />
+      )}
+      {isInAllowList && (
+        <MenuItem
+          onClick={onRemoveFromAllowList}
+          preFix={
+            <MenuIcon>
+              <FilterMinusIcon />
+            </MenuIcon>
+          }
+        >
+          {t['Remove special filter']()}
+        </MenuItem>
       )}
       <MenuItem
         onClick={onToggleFavoritePage}
