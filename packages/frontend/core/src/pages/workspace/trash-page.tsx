@@ -106,7 +106,6 @@ export const TrashPage = () => {
             <VirtualizedList
               items={filteredPageMetas}
               rowAsLink
-              groupBy={false}
               isPreferredEdgeless={isPreferredEdgeless}
               docCollection={currentWorkspace.docCollection}
               operationsRenderer={pageOperationsRenderer}

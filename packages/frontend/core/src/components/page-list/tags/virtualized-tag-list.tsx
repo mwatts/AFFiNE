@@ -89,7 +89,6 @@ export const VirtualizedTagList = ({
         ref={listRef}
         selectable="toggle"
         draggable={false}
-        groupBy={false}
         atTopThreshold={80}
         onSelectionActiveChange={setShowFloatingToolbar}
         heading={<TagListHeader onOpen={onOpenCreate} />}

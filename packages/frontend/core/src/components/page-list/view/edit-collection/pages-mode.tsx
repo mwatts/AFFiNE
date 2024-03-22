@@ -127,7 +127,6 @@ export const PagesMode = ({
             <VirtualizedList
               className={styles.pageList}
               items={searchedList}
-              groupBy={false}
               docCollection={allPageListConfig.docCollection}
               selectable
               onSelectedIdsChange={ids => {

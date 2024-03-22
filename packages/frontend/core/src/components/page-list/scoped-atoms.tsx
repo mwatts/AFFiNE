@@ -186,12 +186,9 @@ export const sorterAtom = atom(
 );
 
 export const groupsAtom = atom(get => {
-  let groupBy = get(selectAtom(listPropsAtom, props => props.groupBy));
+  const groupBy = get(selectAtom(listPropsAtom, props => props.groupBy));
   const sorter = get(sorterAtom);
 
-  if (groupBy === false) {
-    groupBy = undefined;
-  }
   return itemsToItemGroups<ListItem>(sorter.items, groupBy);
 });
 
