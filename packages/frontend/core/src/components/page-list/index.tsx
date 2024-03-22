@@ -2,6 +2,7 @@ export * from './collections';
 export * from './components/favorite-tag';
 export * from './components/floating-toolbar';
 export * from './components/new-page-button';
+export * from './components/page-display-menu';
 export * from './docs';
 export * from './docs/page-list-item';
 export * from './docs/page-tags';
