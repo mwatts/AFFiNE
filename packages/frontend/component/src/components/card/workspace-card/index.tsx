@@ -21,10 +21,6 @@ export interface WorkspaceCardProps {
   isOwner?: boolean;
   avatar?: string;
   name?: string;
-  /**
-   * use dense mode, will hide the workspace type
-   */
-  dense?: boolean;
 }
 
 export const WorkspaceCardSkeleton = () => {
