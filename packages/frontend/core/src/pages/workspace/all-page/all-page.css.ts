@@ -89,3 +89,12 @@ export const body = style({
   height: '100%',
   width: '100%',
 });
+
+export const propertyButton = style({
+  color: cssVar('textDisableColor'),
+  selectors: {
+    '&[data-active="true"]': {
+      color: cssVar('textPrimaryColor'),
+    },
+  },
+});

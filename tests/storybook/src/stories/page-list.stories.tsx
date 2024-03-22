@@ -224,7 +224,7 @@ export const PageListStory: StoryFn<ListProps<ListItem>> = (
 };
 
 PageListStory.args = {
-  groupBy: 'createDate',
+  groupBy: false,
 };
 
 PageListStory.argTypes = {

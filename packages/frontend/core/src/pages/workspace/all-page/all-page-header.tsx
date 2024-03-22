@@ -7,9 +7,11 @@ import {
 } from '@affine/component';
 import {
   AllPageListOperationsMenu,
+  type PageDisplayProperties,
   type PageGroupByType,
   pageGroupByTypeAtom,
   PageListNewPageButton,
+  usePageDisplayProperties,
 } from '@affine/core/components/page-list';
 import { Header } from '@affine/core/components/pure/header';
 import { WorkspaceModeFilterTab } from '@affine/core/components/pure/workspace-mode-filter-tab';
@@ -40,6 +42,7 @@ export const AllPageHeader = ({
 }) => {
   const workspace = useService(Workspace);
   const [group, setGroup] = useAtom(pageGroupByTypeAtom);
+  const [properties, setProperties] = usePageDisplayProperties();
   const t = useAFFiNEI18N();
   const handleSelect = useCallback(
     (value: PageGroupByType) => {
@@ -47,6 +50,34 @@ export const AllPageHeader = ({
     },
     [setGroup]
   );
+  const propertyOptions: Array<{
+    key: keyof PageDisplayProperties;
+    onClick: () => void;
+    label: string;
+  }> = useMemo(() => {
+    return [
+      {
+        key: 'bodyNotes',
+        onClick: () => setProperties('bodyNotes', !properties['bodyNotes']),
+        label: t['com.affine.page.display.display-properties.body-notes'](),
+      },
+      {
+        key: 'tags',
+        onClick: () => setProperties('tags', !properties['tags']),
+        label: t['Tags'](),
+      },
+      {
+        key: 'createDate',
+        onClick: () => setProperties('createDate', !properties['createDate']),
+        label: t['Created'](),
+      },
+      {
+        key: 'updatedDate',
+        onClick: () => setProperties('updatedDate', !properties['updatedDate']),
+        label: t['Updated'](),
+      },
+    ];
+  }, [properties, setProperties, t]);
 
   const items = useMemo(() => {
     const groupOptions: GroupOption[] = [
@@ -111,16 +142,20 @@ export const AllPageHeader = ({
           {t['com.affine.page.display.display-properties']()}
         </div>
         <div className={styles.propertiesWrapper}>
-          <Button>
-            {t['com.affine.page.display.display-properties.body-notes']()}
-          </Button>
-          <Button>{t['Tags']()}</Button>
-          <Button>{t['Created']()}</Button>
-          <Button>{t['Updated']()}</Button>
+          {propertyOptions.map(option => (
+            <Button
+              key={option.label}
+              className={styles.propertyButton}
+              onClick={option.onClick}
+              data-active={properties[option.key]}
+            >
+              {option.label}
+            </Button>
+          ))}
         </div>
       </>
     );
-  }, [group, handleSelect, t]);
+  }, [group, handleSelect, properties, propertyOptions, t]);
 
   return (
     <Header

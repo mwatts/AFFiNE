@@ -152,6 +152,7 @@ export type HeaderColDef = {
   alignment?: ColWrapperProps['alignment'];
   sortable?: boolean;
   hideInSmallContainer?: boolean;
+  hidden?: boolean;
 };
 
 export type ColWrapperProps = PropsWithChildren<{
@@ -161,3 +162,10 @@ export type ColWrapperProps = PropsWithChildren<{
   hideInSmallContainer?: boolean;
 }> &
   React.HTMLAttributes<Element>;
+
+export type PageDisplayProperties = {
+  bodyNotes: boolean;
+  tags: boolean;
+  createDate: boolean;
+  updatedDate: boolean;
+};

@@ -11,7 +11,7 @@ import {
   useRef,
 } from 'react';
 
-import { pageHeaderColsDef } from './header-col-def';
+import { usePageHeaderColsDef } from './header-col-def';
 import * as styles from './list.css';
 import { ItemGroup } from './page-group';
 import { ListTableHeader } from './page-header';
@@ -135,7 +135,7 @@ ListInnerWrapper.displayName = 'ListInnerWrapper';
 
 const ListInner = (props: ListProps<ListItem>) => {
   const groups = useAtomValue(groupsAtom);
-
+  const pageHeaderColsDef = usePageHeaderColsDef();
   const hideHeader = props.hideHeader;
   return (
     <div className={clsx(props.className, styles.root)}>

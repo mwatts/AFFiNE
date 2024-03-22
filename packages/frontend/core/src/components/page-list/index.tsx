@@ -17,6 +17,7 @@ export * from './tags';
 export * from './types';
 export * from './use-collection-manager';
 export * from './use-filtered-page-metas';
+export * from './use-page-display-properties';
 export * from './utils';
 export * from './view';
 export * from './virtualized-list';

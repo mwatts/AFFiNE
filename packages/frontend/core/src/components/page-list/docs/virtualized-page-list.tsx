@@ -15,7 +15,7 @@ import { useCallback, useMemo, useRef, useState } from 'react';
 import { usePageHelper } from '../../blocksuite/block-suite-page-list/utils';
 import { ListFloatingToolbar } from '../components/list-floating-toolbar';
 import { usePageItemGroupDefinitions } from '../group-definitions';
-import { pageHeaderColsDef } from '../header-col-def';
+import { usePageHeaderColsDef } from '../header-col-def';
 import { PageOperationCell } from '../operation-cell';
 import { PageListItemRenderer } from '../page-group';
 import { ListTableHeader } from '../page-header';
@@ -110,6 +110,7 @@ export const VirtualizedPageList = ({
   const pageMetas = useBlockSuiteDocMeta(currentWorkspace.docCollection);
   const pageOperations = usePageOperationsRenderer();
   const { isPreferredEdgeless } = usePageHelper(currentWorkspace.docCollection);
+  const pageHeaderColsDef = usePageHeaderColsDef();
 
   const filteredPageMetas = useFilteredPageMetas(currentWorkspace, pageMetas, {
     filters,
@@ -141,7 +142,7 @@ export const VirtualizedPageList = ({
 
   const pageHeaderRenderer = useCallback(() => {
     return <ListTableHeader headerCols={pageHeaderColsDef} />;
-  }, []);
+  }, [pageHeaderColsDef]);
 
   const pageItemRenderer = useCallback((item: ListItem) => {
     return <PageListItemRenderer {...item} />;

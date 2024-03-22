@@ -8,7 +8,7 @@ import {
   useFilteredPageMetas,
   VirtualizedList,
 } from '@affine/core/components/page-list';
-import { pageHeaderColsDef } from '@affine/core/components/page-list/header-col-def';
+import { usePageHeaderColsDef } from '@affine/core/components/page-list/header-col-def';
 import { Header } from '@affine/core/components/pure/header';
 import { WindowsAppControls } from '@affine/core/components/pure/header/windows-app-controls';
 import { useBlockSuiteMetaHelper } from '@affine/core/hooks/affine/use-block-suite-meta-helper';
@@ -61,6 +61,7 @@ export const TrashPage = () => {
     useBlockSuiteMetaHelper(docCollection);
   const { isPreferredEdgeless } = usePageHelper(docCollection);
   const t = useAFFiNEI18N();
+  const pageHeaderColsDef = usePageHeaderColsDef();
 
   const pageOperationsRenderer = useCallback(
     (item: ListItem) => {
@@ -93,7 +94,7 @@ export const TrashPage = () => {
   }, []);
   const pageHeaderRenderer = useCallback(() => {
     return <ListTableHeader headerCols={pageHeaderColsDef} />;
-  }, []);
+  }, [pageHeaderColsDef]);
   return (
     <>
       <ViewHeaderIsland>
