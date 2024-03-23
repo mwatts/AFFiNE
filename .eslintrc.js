@@ -98,6 +98,7 @@ const config = {
     'i',
     'unused-imports',
     'unicorn',
+    'rxjs',
   ],
   rules: {
     'array-callback-return': 'error',
@@ -202,6 +203,17 @@ const config = {
     'sonarjs/no-collection-size-mischeck': 'error',
     'sonarjs/no-useless-catch': 'error',
     'sonarjs/no-identical-functions': 'error',
+    'rxjs/finnish': [
+      'error',
+      {
+        functions: false,
+        methods: false,
+        strict: true,
+        types: {
+          '^LiveData$': true,
+        },
+      },
+    ],
   },
   overrides: [
     {
