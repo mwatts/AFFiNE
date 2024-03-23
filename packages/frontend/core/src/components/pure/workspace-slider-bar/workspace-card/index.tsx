@@ -197,16 +197,7 @@ const useSyncEngineSyncProgress = () => {
       ) : (
         <LocalWorkspaceStatus />
       ),
-    // TODO: simplify this
-    active:
-      currentWorkspace.flavour === WorkspaceFlavour.AFFINE_CLOUD &&
-      !!(
-        syncEngineStatus?.error ||
-        !syncEngineStatus ||
-        syncEngineStatus.step === SyncEngineStep.Syncing ||
-        syncEngineStatus.retrying ||
-        isOverCapacity
-      ),
+    active: syncing || retrying || isOverCapacity,
   };
 };
 
