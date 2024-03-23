@@ -211,6 +211,10 @@ const config = {
         strict: true,
         types: {
           '^LiveData$': true,
+          // some yjs classes are Observables, but they don't need to be in Finnish notation
+          '^Doc$': false, // yjs Doc
+          '^Awareness$': false, // yjs Awareness
+          '^UndoManager$': false, // yjs UndoManager
         },
       },
     ],

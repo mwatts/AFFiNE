@@ -314,7 +314,7 @@ export class LiveData<T = unknown>
     return subscription;
   }
 
-  map<R>(mapper: (v: T) => R) {
+  map<R>(mapper: (v: T) => R): LiveData<R> {
     const sub$ = LiveData.from(
       new Observable<R>(subscriber =>
         this.subscribe({
@@ -332,6 +332,7 @@ export class LiveData<T = unknown>
     return sub$;
   }
 
+  // eslint-disable-next-line rxjs/finnish
   asObservable(): Observable<T> {
     return new Observable<T>(subscriber => {
       return this.subscribe(subscriber);
