@@ -8,7 +8,8 @@ import {
   getBlockSuiteEditorTitle,
   waitForEditorLoad,
 } from '@affine-test/kit/utils/page-logic';
-import { expect, type Page } from '@playwright/test';
+import type { Page } from '@playwright/test';
+import { expect } from '@playwright/test';
 
 async function importImage(page: Page, url: string) {
   await page.evaluate(
