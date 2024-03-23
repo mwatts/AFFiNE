@@ -733,7 +733,7 @@ export const subscriptionQuery = {
   query: `
 query subscription {
   currentUser {
-    subscription {
+    subscriptions {
       id
       status
       plan

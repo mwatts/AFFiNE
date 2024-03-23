@@ -3,7 +3,7 @@ import { Button } from '@affine/component/ui/button';
 import { Loading } from '@affine/component/ui/loading';
 import { AffineShapeIcon } from '@affine/core/components/page-list';
 import { useAsyncCallback } from '@affine/core/hooks/affine-async-hooks';
-import type { SubscriptionPlan, SubscriptionRecurring } from '@affine/graphql';
+import { SubscriptionPlan, type SubscriptionRecurring } from '@affine/graphql';
 import {
   changePasswordMutation,
   createCheckoutSessionMutation,
@@ -135,7 +135,11 @@ const SubscriptionRedirectWithData = () => {
     );
   }
 
-  if (subscriptionData.currentUser?.subscription) {
+  if (
+    subscriptionData.currentUser?.subscriptions?.some(
+      sub => sub.plan === SubscriptionPlan.Pro
+    )
+  ) {
     return <SubscriptionExisting />;
   }
 
